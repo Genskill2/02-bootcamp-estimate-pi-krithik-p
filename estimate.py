@@ -3,29 +3,31 @@ import unittest
 import random 
 
 
-def wallis(i):
-    n=1
-    temp = 1.0
-    while(n<=i):
-        temp *= float((4*n*n)/((4*n*n)-1))
-        
-        n=n+1
-
-    return temp*2
-
+def wallis(n):
+    pi = 2.
+    for i in range(1, n):
+        left = (2. * i)/(2. * i - 1.)
+        right = (2. * i)/(2. * i + 1.)
+        pi = pi * left * right
+    return pi
+    
 def monte_carlo(i):
     ar_s=0
     ar_c=0
+
     for j in range(i):
         x = random.random()
         y = random.random()
-        dist = math.dist(x,y)
+        dist = math.sqrt(x*x + y*y)
         if(dist<=1):
             ar_c = ar_c + 1
+            ar_s = ar_s + 1
         else:
             ar_s = ar_s + 1
 
-    return 4*(ar_c/ar_s)
+    
+    res = 4*(ar_c/ar_s)
+    return res
         
 
 class TestWallis(unittest.TestCase):
