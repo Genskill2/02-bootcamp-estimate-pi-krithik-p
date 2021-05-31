@@ -5,9 +5,11 @@ import random
 
 def wallis(i):
     n=1
-    temp = 1
+    temp = 1.0
     while(n<=i):
-        temp *= (4*n*n)/((4*n*n)-1)
+        temp *= float((4*n*n)/((4*n*n)-1))
+        
+        n=n+1
 
     return temp*2
 
